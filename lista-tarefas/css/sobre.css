@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body {
+    background: #c6c6c6;
+}
+
+.container {
+    background: #fff;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.container h1 {
+    padding: 10px;
+    color: blueviolet;
+}
+
+.list-dev {
+    border: 2px dotted red;
+    margin: 20px auto;
+    max-width: 400px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 2.0s;
+}
+
+.list-dev:hover {
+    background: rgb(91, 102, 219);
+    color: #fff;
+}
+
+.links a {
+    padding: 20px;
+    display: block;
+    text-decoration: none;
+    font-size: 22px;
+    color: brown;
+}
+
+.links a:hover {
+    text-decoration: underline;
+    color: burlywood;
+}
