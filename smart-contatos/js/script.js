@@ -30,8 +30,12 @@ form.addEventListener("submit", function(event) {
 
     // Criando uma função para excluir
     btnExcluir.addEventListener("click", function() {
-        alert("teste")
-    })
+        const confirmar = confirm("Tem certeza que deseja excluir o contato?");
+
+        if (confirmar) {
+            li.remove();
+        }
+    });
 
     li.innerHTML = `
         <span class="contato-nome">${inputNome.value}</span>
