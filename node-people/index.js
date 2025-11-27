@@ -17,6 +17,16 @@ function buscarNomePorId(id) {
   return nomes.filter((nome) => nome.id == id)
 }
 
+// Pegar a posição ou index do elemento do Array por id
+function buscarIdNomes(id) {
+  return nomes.findIndex((nome) => nome.id == id);
+}
+
+// Rota Principal
+app.get("/", (req, res) => {
+  res.send("Rota principal");
+});
+
 // Rota teste
 app.get("/teste", (req, res) => {
   res.send("API nodePeople está funcionando!");
@@ -32,6 +42,13 @@ app.get("/listaNomes/:id", (req, res) => {
   let index = req.params.id;
 
   res.json(buscarNomePorId(index))
+});
+
+// Criando Rota Excluir
+app.delete("/listaNomes/:id", (req, res) => {
+  let index = buscarIdNomes(req.params.id);
+  nomes.splice(index, 1);
+  res.send(`Nomes com id ${req.params.id} excluida com sucesso!`);
 });
 
 
