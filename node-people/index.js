@@ -1,6 +1,10 @@
 const express = require("express");
 const app = express();
+
+app.use(express.json());
 const PORT = 3000; // executar na porta 3000
+
+
 
 // mock
 const nomes = [
@@ -27,13 +31,11 @@ function buscarNomePorId(id) {
   return nomes.filter((nome) => nome.id == id)
 }
 
-// Pegar a posição ou index do elemento do Array por id
-function buscarIdNomes(id) {
-  return nomes.findIndex(nome => nome.id == id);
-}
+// Pegar a posição ou index do elemento do Array por i
 
 function buscarIdNomes(id) {
-  return nomes.findIndex(nome => nome.id == id);
+  console.log(nomes)
+  return nomes.findIndex(nome => nome?.id == id);
 }
 
 // Rota Principal
@@ -60,8 +62,8 @@ app.get("/listaNomes/:id", (req, res) => {
 
 // Criando Post para cadastrar
 app.post("/listaNomes", (req, res) => {
-   nomes.push(req.body);
-   res.status(201).send('Nomes cadastrado com sucesso!');
+  nomes.push(req.body);
+  res.status(201).send('Nomes cadastrado com sucesso!');
 });
 
 
@@ -82,7 +84,17 @@ app.delete("/listaNomes/:id", (req, res) => {
 // Rota alterar
 // Rota alterar
 app.put('/listaNomes/:id', (req, res) => {
+  console.log(req.params.id)
+
   let index = buscarIdNomes(req.params.id);
+
+  console.log(index)
+  console.log(req.body)
+
+  if (index === -1) {
+    return res.status(404).send(`Nenhum nome com id ${req.params.id} foi encontrado`)
+  }
+
   nomes[index].nome = req.body.nome;
   nomes[index].idade = req.body.idade;
 
