@@ -11,6 +11,16 @@ const nomes = [
   { id: 5, nome: "Doris", idade: "70" },
 ];
 
+const times = [
+  { id: 1, nome: "Corinthians", estado: "SP", titulos: 7 },
+  { id: 2, nome: "Palmeiras", estado: "SP", titulos: 11 },
+  { id: 3, nome: "Santos", estado: "SP", titulos: 8 },
+  { id: 4, nome: "Flamengo", estado: "RJ", titulos: 7 },
+  { id: 5, nome: "Vasco", estado: "RJ", titulos: 4 },
+  { id: 6, nome: "Atlético Mineiro", estado: "MG", titulos: 3 },
+  { id: 7, nome: "Cruzeiro", estado: "MG", titulos: 4 },
+];
+
 // Criando Funções Auxiliares
 // Retornar o objeto por Id
 function buscarNomePorId(id) {
@@ -20,6 +30,10 @@ function buscarNomePorId(id) {
 // Pegar a posição ou index do elemento do Array por id
 function buscarIdNomes(id) {
   return nomes.findIndex((nome) => nome.id == id);
+}
+
+function buscarIdTimes(id) {
+  return times.findIndex((nome) => nome.id == id);
 }
 
 // Rota Principal
@@ -55,6 +69,19 @@ app.post("/listaNomes", (req, res) => {
 app.delete("/listaNomes/:id", (req, res) => {
   let index = buscarIdNomes(req.params.id);
   nomes.splice(index, 1);
+  res.send(`Nomes com id ${req.params.id} excluida com sucesso!`);
+});
+
+// ROTAS de times
+// Buscando nomes (Times)
+app.get("/listaTimes", (req, res) => {
+  res.send(times);
+});
+
+// Criando Rota Excluir
+app.delete("/listaTimes/:id", (req, res) => {
+  let index = buscarIdTimes(req.params.id);
+  times.splice(index, 1);
   res.send(`Nomes com id ${req.params.id} excluida com sucesso!`);
 });
 
