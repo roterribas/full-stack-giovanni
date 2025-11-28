@@ -29,11 +29,11 @@ function buscarNomePorId(id) {
 
 // Pegar a posição ou index do elemento do Array por id
 function buscarIdNomes(id) {
-  return nomes.findIndex((nome) => nome.id == id);
+  return nomes.findIndex(nome => nome.id == id);
 }
 
-function buscarIdTimes(id) {
-  return times.findIndex((nome) => nome.id == id);
+function buscarIdNomes(id) {
+  return nomes.findIndex(nome => nome.id == id);
 }
 
 // Rota Principal
@@ -77,11 +77,17 @@ app.delete("/listaNomes/:id", (req, res) => {
 
   nomes.splice(index, 1);
   res.send(`Nomes com id ${req.params.id} excluida com sucesso!`);
-
-  // let index = buscarIdNomes(req.params.id);
-  // nomes.splice(index, 1);
-  // res.send(`Nomes com id ${req.params.id} excluida com sucesso!`);
 });
+
+// Rota alterar
+// Rota alterar
+app.put('/listaNomes/:id', (req, res) => {
+  let index = buscarIdNomes(req.params.id);
+  nomes[index].nome = req.body.nome;
+  nomes[index].idade = req.body.idade;
+
+  res.json(nomes);
+})
 
 // ROTAS de times
 // Buscando nomes (Times)
