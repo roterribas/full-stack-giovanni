@@ -21,6 +21,24 @@ insert into produtos (nome, email, telefone, cpf, endereco) values
 -- Seleciona o registro onde o id = 1
 select * from produtos where id = 2;
 
+select * from produtos;
 
+-- Deleta o registro onde o id = 1
+delete from produtos where id = 1;
+
+select * from produtos;
+
+-- Insere mais um registro
+insert into produtos (nome, email, telefone, cpf, endereco) values
+	('Rodrigo Campos', 'rodrigos@rodrigo.com.br', '4444444', '6666-666', 'Orutos Campos');
+
+delete from produtos where id = 6;
+    
+select * from produtos;
+
+-- Atualiza o nome onde o id for 5
+update produtos 
+set nome = 'Zezé Campos Dev'
+where id = 5;
 
 select * from produtos;
