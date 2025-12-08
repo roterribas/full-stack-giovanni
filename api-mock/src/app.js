@@ -16,5 +16,18 @@ app.get('/selecoes', (req, res) => {
     });
 });
 
+// Buscando por ID
+app.get('/selecoes/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = "select * from selecoes where id=?;";
+
+    conexao.query(sql, id, (erro, result) => {
+        res.json(result[0]);
+    });
+});
+
+// Deletando registro
+
+
 
 export default app;
