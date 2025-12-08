@@ -27,7 +27,14 @@ app.get('/selecoes/:id', (req, res) => {
 });
 
 // Deletando registro
+app.delete('/selecoes/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = "delete from selecoes where id=?";
 
+    conexao.query(sql, id, () => {
+        res.json({ menssagem: "Deletando com sucesso"});
+    });
+})
 
 
 export default app;
