@@ -3,6 +3,9 @@ import conexao from "../infra/conexao.js";
 
 const app = express();
 
+// Indicar para express ler o body com json
+app.use(express.json());
+
 app.get("/", (req, res) => {
     res.send("Olá Copa do Mundo!");
 });
@@ -25,6 +28,18 @@ app.get('/selecoes/:id', (req, res) => {
         res.json(result[0]);
     });
 });
+
+// Criando POST para cadastrar 
+app.post('/selecoes', (req, res) => {
+    const selecao = req.body;
+    const sql = "INSERT INTO selecoes SET?;";
+
+    conexao.query(sql, selecao, () => {
+        res.json({ mensagem: "Cadastrado com sucesso!"});
+    })
+});
+
+
 
 // Deletando registro
 app.delete('/selecoes/:id', (req, res) => {
