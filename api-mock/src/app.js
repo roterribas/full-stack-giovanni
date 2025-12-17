@@ -49,7 +49,18 @@ app.delete('/selecoes/:id', (req, res) => {
     conexao.query(sql, id, () => {
         res.json({ menssagem: "Deletando com sucesso"});
     });
-})
+});
+
+// Atualizando registro teste
+app.put('/selecoes/:id', (req, res) => {
+    const id = req.params.id;
+    const selecao = req.body;
+    const sql = "update selecoes set ? where id=?";
+
+    conexao.query(sql, [selecao, id], () => {
+        res.json({ mensagem: "Atualizando com sucesso!" });
+    });
+});
 
 
 export default app;
